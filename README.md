@@ -56,7 +56,7 @@ git push origin $branch_name
 - If credentials are needed, use environment variables or HashiCorp's [Vault](https://www.vaultproject.io/)
 
 
-## Data
+## Get Data
 
 ### Get IAM handwritting top50 dataset
 
@@ -68,6 +68,15 @@ https://www.kaggle.com/tejasreddy/iam-handwriting-top50
 Note that you have to log in your Kaggle account and download the zip file
  manually and put it under the project folder 
 `/data/raw/`
+
+and run `python ./scr/ingestion/process_IAM_top50.py` to extract data
+
+### Get the Transient attribute scenes dataset:
+
+The dataset is described in  
+http://transattr.cs.brown.edu
+
+in terminal run `python ./src/ingestion/process_transient_attribute_scenes.py` to download and extract
 
 ## Test
 - Include instructions for how to run all tests after the software is installed
