@@ -56,6 +56,19 @@ git push origin $branch_name
 - If credentials are needed, use environment variables or HashiCorp's [Vault](https://www.vaultproject.io/)
 
 
+## Data
+
+### Get IAM handwritting top50 dataset
+
+The dataset used here is the selected subset of the IAM handwritting dataset
+that can be downloaded from Kaggle throught the link
+
+https://www.kaggle.com/tejasreddy/iam-handwriting-top50
+
+Note that you have to log in your Kaggle account and download the zip file
+ manually and put it under the project folder 
+`/data/raw/`
+
 ## Test
 - Include instructions for how to run all tests after the software is installed
 ```
