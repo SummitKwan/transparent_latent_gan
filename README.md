@@ -56,6 +56,37 @@ git push origin $branch_name
 - If credentials are needed, use environment variables or HashiCorp's [Vault](https://www.vaultproject.io/)
 
 
+## Get Data
+
+### Get IAM handwritting top50 dataset
+
+The dataset used here is the selected subset of the IAM handwritting dataset
+that can be downloaded from Kaggle throught the link
+
+https://www.kaggle.com/tejasreddy/iam-handwriting-top50
+
+Note that you have to log in your Kaggle account and download the zip file
+ manually and put it under the project folder 
+`/data/raw/`
+
+and run `python ./scr/ingestion/process_IAM_top50.py` to extract data
+
+### Get the Transient attribute scenes dataset:
+
+The dataset is described in  
+http://transattr.cs.brown.edu
+
+in terminal run `python ./src/ingestion/process_transient_attribute_scenes.py` to download and extract
+
+### Get CelebA, cifar or minist
+
+in terminal run `python ./src/ingestion/process_celeba.py celebA` to download and extract celebA
+
+in terminal run `python ./src/ingestion/process_celeba.py cifar` to download and extract cifar
+
+in terminal run `python ./src/ingestion/process_celeba.py mnist` to download and extract mnist
+
+
 ## Test
 - Include instructions for how to run all tests after the software is installed
 ```
