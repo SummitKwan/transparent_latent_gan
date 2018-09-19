@@ -78,6 +78,15 @@ http://transattr.cs.brown.edu
 
 in terminal run `python ./src/ingestion/process_transient_attribute_scenes.py` to download and extract
 
+### Get CelebA, cifar or minist
+
+in terminal run `python ./src/ingestion/process_celeba.py celebA` to download and extract celebA
+
+in terminal run `python ./src/ingestion/process_celeba.py cifar` to download and extract cifar
+
+in terminal run `python ./src/ingestion/process_celeba.py mnist` to download and extract mnist
+
+
 ## Test
 - Include instructions for how to run all tests after the software is installed
 ```
