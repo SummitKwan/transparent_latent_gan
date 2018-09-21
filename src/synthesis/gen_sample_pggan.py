@@ -1,4 +1,7 @@
-""" try face synthesis using pg-gan model """
+"""
+try face synthesis using pg-gan model, modified from
+https://drive.google.com/drive/folders/1A79qKDTFp6pExe4gTSgBsEOkxwa2oes_
+"""
 
 """
 prerequsit: before running the code, download pre-trained model to project_root/asset_model/
@@ -13,6 +16,7 @@ import pickle
 import numpy as np
 import tensorflow as tf
 import PIL.Image
+import datetime
 
 # path to model code and weight
 path_pg_gan_code = './src/model/pggan'
@@ -20,15 +24,18 @@ path_model = './asset_model/karras2018iclr-celebahq-1024x1024.pkl'
 sys.path.append(path_pg_gan_code)
 
 # path to model generated results
-path_gen_sample = './asset_results/pgsgan_celeba/'
+path_gen_sample = './asset_results/pggan_celeba_sample_pkl/'
 if not os.path.exists(path_gen_sample):
     os.mkdir(path_gen_sample)
+path_gan_explore = './asset_results/pggan_celeba_explore/'
+if not os.path.exists(path_gan_explore):
+    os.mkdir(path_gan_explore)
 
-##
 
-n_batch = 6000
+""" gen samples and save as pickle """
+
+n_batch = 8000
 batch_size = 32
-
 
 with tf.Session() as sess:
     # Initialize TensorFlow session.
@@ -73,9 +80,11 @@ with tf.Session() as sess:
         except:
             print('error in {}'.format(i_sample))
 
-##
-with open(os.path.join(path_gen_sample, 'pggan_celeba_{:0>6d}.pkl'.format(0)), 'rb') as f:
-    temp = pickle.load(f)
 
-import matplotlib.pyplot as plt
-plt.imshow(temp['x'][4]); plt.show()
+""" view generated samples """
+#
+# with open(os.path.join(path_gen_sample, 'pggan_celeba_{:0>6d}.pkl'.format(0)), 'rb') as f:
+#     temp = pickle.load(f)
+#
+# import matplotlib.pyplot as plt
+# plt.imshow(temp['x'][0]); plt.show()
