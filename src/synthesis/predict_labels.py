@@ -57,3 +57,4 @@ y_concat = np.concatenate(list_y, axis=0)
 pathfile_sample_y = os.path.join(path_gan_sample_img, filename_sample_y)
 with h5py.File(pathfile_sample_y, 'w') as f:
     f.create_dataset('y', data=y_concat)
+
