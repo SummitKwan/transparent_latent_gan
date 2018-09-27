@@ -9,6 +9,7 @@ import PIL
 import keras
 import keras.applications
 import keras.layers as layers
+from keras.applications.mobilenet import preprocess_input
 
 path_celeba_img = './data/processed/celebA_crop'
 path_celeba_att = './data/raw/celebA_annotation/list_attr_celeba.txt'
@@ -151,7 +152,7 @@ def load_data_batch(num_images_total=None):
     x_batch = np.stack(list_x, axis=0)
     y_batch = np.stack(list_y, axis=0)
 
-    x_batch_ready = keras.applications.mobilenet.preprocess_input(x_batch.copy())
+    x_batch_ready = preprocess_input(x_batch.copy())
     y_batch_ready = np.array(y_batch, dtype='float32')
 
     return x_batch_ready, y_batch_ready
@@ -173,8 +174,6 @@ def train_protocol():
     model.save(filepath=name_model_save)
 
     return model
-
-
 
 
 ##
