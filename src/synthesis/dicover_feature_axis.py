@@ -18,9 +18,9 @@ import glob
 
 
 # path to model generated results
-path_gen_sample = './asset_results/pggan_celeba_sample_pkl/'
-if not os.path.exists(path_gen_sample):
-    os.mkdir(path_gen_sample)
+path_gan_sample = './asset_results/pggan_celeba_sample_pkl/'
+if not os.path.exists(path_gan_sample):
+    os.mkdir(path_gan_sample)
 
 ##
 """ function to get features """
@@ -39,7 +39,7 @@ def get_feature(x):
 
 ##
 """ get the simplest feature: dark-bright skin color """
-list_pkl = sorted(glob.glob(path_gen_sample+'*.pkl'))
+list_pkl = sorted(glob.glob(path_gan_sample+'*.pkl'))
 
 list_z = []
 list_y = []
