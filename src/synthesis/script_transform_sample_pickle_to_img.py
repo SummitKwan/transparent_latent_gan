@@ -1,4 +1,4 @@
-""" temporary script to transform samples pkl to images """
+""" temporary script to transform samples from pkl to images """
 
 import os
 import glob
