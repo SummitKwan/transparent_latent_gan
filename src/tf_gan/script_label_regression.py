@@ -66,31 +66,11 @@ feature_name = np.array(feature_direction_name['name'])
 
 len_z, len_y = feature_direction.shape
 
-##
-""" plot correlation between feature axis """
 
-yn_plot_feature_correlation  = False
+feature_direction_disentangled = feature_axis.disentangle_feature_axis_by_idx(
+    feature_direction, idx_base=range(len_y//4), idx_target=None)
 
-if yn_plot_feature_correlation:
-
-    import matplotlib.pyplot as plt
-
-    def plot_feature_correlation(feature_direction, feature_name):
-        feature_correlation = np.corrcoef(feature_direction.transpose())
-        len_z, len_y = feature_direction.shape
-        c_lim_abs = np.max(np.abs(feature_direction))
-        plt.figure(figsize=(8,8))
-        plt.pcolormesh(np.arange(len_y+1), np.arange(len_y+1), feature_correlation,
-                       cmap='coolwarm', clim=[-c_lim_abs, +c_lim_abs])
-        plt.gca().invert_yaxis()
-        plt.colorbar()
-        # plt.axis('square')
-        plt.xticks(np.arange(len_y) + 0.5, feature_name, fontsize='x-small', rotation='vertical')
-        plt.yticks(np.arange(len_y) + 0.5, feature_name, fontsize='x-small')
-        plt.show()
-
-
-    plot_feature_correlation(feature_direction, feature_name)
+feature_axis.plot_feature_cos_sim(feature_direction_disentangled, feature_name=feature_name)
 
 ##
 
