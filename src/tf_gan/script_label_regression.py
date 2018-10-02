@@ -34,27 +34,24 @@ y_name = df_attr.columns.values.tolist()
 
 ##
 """ regression: use latent space z to predict features y """
-import importlib
-importlib.reload(feature_axis)
-
 feature_slope = feature_axis.find_feature_axis(z, y, method='tanh')
 
 ##
+""" normalize the feature vectors """
+yn_normalize_feature_direction = True
+if yn_normalize_feature_direction:
+    feature_direction = feature_axis.normalize_feature_axis(feature_slope)
+else:
+    feature_direction = feature_slope
 
-# feature_direction = feature_axis.normalize_feature_axis(feature_slope)
-feature_direction = feature_slope
-
-# save_regression result
+""" save_regression result to hard disk """
 if not os.path.exists(path_feature_direction):
     os.mkdir(path_feature_direction)
 
-# save to hard disk
 pathfile_feature_direction = os.path.join(path_feature_direction, 'feature_direction_{}.pkl'.format(misc.gen_time_str()))
 dict_to_save = {'direction': feature_direction, 'name': y_name}
 with open(pathfile_feature_direction, 'wb') as f:
     pickle.dump(dict_to_save, f)
-
-
 
 
 ##
@@ -74,7 +71,7 @@ len_z, len_y = feature_direction.shape
 
 yn_plot_feature_correlation  = False
 
-if yn_plot_feature_correlation == True:
+if yn_plot_feature_correlation:
 
     import matplotlib.pyplot as plt
 

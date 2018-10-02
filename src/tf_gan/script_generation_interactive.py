@@ -6,7 +6,6 @@ import sys
 import numpy as np
 import time
 import pickle
-import datetime
 import tensorflow as tf
 import PIL
 import matplotlib
@@ -37,6 +36,7 @@ with open(pathfile_feature_direction, 'rb') as f:
 feature_direction = feature_direction_name['direction']
 feature_name = feature_direction_name['name']
 num_feature = feature_direction.shape[1]
+
 ##
 """ load gan model """
 
@@ -78,6 +78,8 @@ def gen_image(latents):
     return images[0]
 
 img_cur = gen_image(latents)
+
+
 ##
 """ plot figure """
 h_fig = plt.figure(figsize=[12, 6])

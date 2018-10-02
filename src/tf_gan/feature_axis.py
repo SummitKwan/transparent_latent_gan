@@ -40,7 +40,7 @@ def normalize_feature_axis(feature_slope):
     :return: same shape of input
     """
 
-    feature_direction = feature_slope / np.sum(feature_slope**2, axis=0, keepdims=True)
+    feature_direction = feature_slope / np.sqrt(np.sum(feature_slope**2, axis=0, keepdims=True))
     return feature_direction
 
 
