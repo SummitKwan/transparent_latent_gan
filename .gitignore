@@ -102,3 +102,10 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# data
+data/
+
+# asset
+asset_model/
+asset_results/
