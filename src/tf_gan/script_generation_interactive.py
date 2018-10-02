@@ -126,7 +126,7 @@ def get_loc_control(idx_feature, nrows=8, ncols=5,
     xywh = x+c*w/ncols, y+(nrows-r-1)*h/nrows, w/ncols, h/nrows
     return xywh
 
-step_size = 0.02
+step_size = 0.4
 
 def create_button(idx_feature):
     """ function to built button groups for one feature """

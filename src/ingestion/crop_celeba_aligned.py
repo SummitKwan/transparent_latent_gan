@@ -105,7 +105,7 @@ if yn_use_h5:
     """ crop data and save to h5 """
     def save_to_h5_img(filepath_h5=filepath_h5, list_img_file=tuple(), fun_get_img=fun_get_img, dataset_name='img'):
         """
-
+        save the images as hdf5 format
         """
         if os.path.exists(filepath_h5):
             print('h5 file exists, please delete it or give another name. if you want to overwrite, type "overwrite"')

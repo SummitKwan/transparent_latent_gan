@@ -73,3 +73,5 @@ path_celebA_hq = './data/raw/celebA_hq_deltas_zip'
 
 # run the following in terminal to generate tf_record version of data
 # ~/ana*/envs/ten*p36/bin/python ./src/ingestion/dataset_tool_modify.py create_celeba ./data/processed/celeba ./data/raw/celebA
+
+
