@@ -125,5 +125,7 @@ for i_feature in range(feature_directon.shape[1]):
                                                                   'img_{}_{}_{}.png'.format(time_str, i_feature, idx)))
     np.save(os.path.join(path_gan_explore, 'img_{}_{}.pkl'.format(time_str, i_feature)), labels)
 
+##
+sess.close()
 
-#sess.close()
+

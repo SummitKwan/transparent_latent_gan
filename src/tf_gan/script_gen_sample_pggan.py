@@ -1,5 +1,5 @@
 """
-try face synthesis using pg-gan model, modified from
+try face tf_gan using pg-gan model, modified from
 https://drive.google.com/drive/folders/1A79qKDTFp6pExe4gTSgBsEOkxwa2oes_
 """
 
@@ -38,7 +38,6 @@ n_batch = 8000
 batch_size = 32
 
 with tf.Session() as sess:
-    # Initialize TensorFlow session.
 
     # Import official CelebA-HQ networks.
     try:
@@ -82,9 +81,12 @@ with tf.Session() as sess:
 
 
 """ view generated samples """
-#
-# with open(os.path.join(path_gen_sample, 'pggan_celeba_{:0>6d}.pkl'.format(0)), 'rb') as f:
-#     temp = pickle.load(f)
-#
-# import matplotlib.pyplot as plt
-# plt.imshow(temp['x'][0]); plt.show()
+yn_view_sample = False
+if yn_view_sample:
+    with open(os.path.join(path_gen_sample, 'pggan_celeba_{:0>6d}.pkl'.format(0)), 'rb') as f:
+        temp = pickle.load(f)
+
+    import matplotlib.pyplot as plt
+    plt.imshow(temp['x'][0]); plt.show()
+
+
