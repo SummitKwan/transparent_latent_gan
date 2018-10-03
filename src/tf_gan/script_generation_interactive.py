@@ -14,6 +14,8 @@ import matplotlib.pyplot as plt
 import matplotlib.widgets as widgets
 plt.ion()
 
+import src.tf_gan.feature_axis as feature_axis
+
 def gen_time_str():
     """ tool function """
     return time.strftime("%Y%m%d_%H%M%S", time.gmtime())
@@ -47,7 +49,14 @@ sys.path.append(path_pg_gan_code)
 
 
 """ create tf session """
-sess = tf.InteractiveSession()
+yn_CPU_only = False
+
+if yn_CPU_only:
+    config = tf.ConfigProto(device_count = {'GPU': 0}, allow_soft_placement=True)
+else:
+    config = tf.ConfigProto(allow_soft_placement=True)
+
+sess = tf.InteractiveSession(config=config)
 
 try:
     with open(path_model, 'rb') as file:
@@ -94,6 +103,10 @@ class GuiCallback(object):
     latents = latents
     def __init__(self):
         self.latents = np.random.randn(1, *Gs.input_shapes[0][1:])
+        self.feature_direction = feature_direction
+        self.feature_lock_status = np.zeros(num_feature).astype('bool')
+        self.feature_directoion_disentangled = feature_axis.disentangle_feature_axis_by_idx(
+            self.feature_direction, idx_base=np.flatnonzero(self.feature_lock_status))
         img_cur = gen_image(self.latents)
         h_img.set_data(img_cur)
         plt.draw()
@@ -105,14 +118,17 @@ class GuiCallback(object):
         plt.draw()
 
     def modify_along_feature(self, event, idx_feature, step_size=0.05):
-        self.latents += feature_direction[:, idx_feature] * step_size
-        # self.latents = self.latents / np.std(self.latents, axis=1, keepdims=True)
+        self.latents += self.feature_directoion_disentangled[:, idx_feature] * step_size
         img_cur = gen_image(self.latents)
         h_img.set_data(img_cur)
         plt.draw()
         plt.savefig(os.path.join(path_gan_explore_interactive,
                                  '{}_{}_{}.png'.format(gen_time_str(), feature_name[idx_feature], ('pos' if step_size>0 else 'neg'))))
 
+    def set_feature_lock(self, event, idx_feature):
+        self.feature_lock_status[idx_feature] = np.logical_not(self.feature_lock_status[idx_feature])
+        self.feature_directoion_disentangled = feature_axis.disentangle_feature_axis_by_idx(
+            self.feature_direction, idx_base=np.flatnonzero(self.feature_lock_status))
 
 callback = GuiCallback()
 
@@ -136,22 +152,31 @@ def create_button(idx_feature):
 
     plt.text(x+w/2, y+h/2+0.01, feature_name[idx_feature], horizontalalignment='center',
              transform=plt.gcf().transFigure)
-    # widgets.TextBox(ax, feature_name[idx_feature], )
 
-    ax_neg = plt.axes((x+w/4, y, w/4, h/2))
+    ax_neg = plt.axes((x + w / 8, y, w / 4, h / 2))
     b_neg = widgets.Button(ax_neg, '-', hovercolor='0.1')
     b_neg.on_clicked(lambda event:
                      callback.modify_along_feature(event, idx_feature, step_size=-1 * step_size))
-    ax_pos = plt.axes((x + w / 2, y, w / 4, h / 2))
+
+    ax_pos = plt.axes((x + w *5/8, y, w / 4, h / 2))
     b_pos = widgets.Button(ax_pos, '+', hovercolor='0.1')
     b_pos.on_clicked(lambda event:
                      callback.modify_along_feature(event, idx_feature, step_size=+1 * step_size))
 
-    return b_neg, b_pos
+    ax_lock = plt.axes((x + w * 3/8, y, w / 4, h / 2))
+    b_lock = widgets.CheckButtons(ax_lock, ['L'], [False])
+    b_lock.on_clicked(lambda event:
+                      callback.set_feature_lock(event, idx_feature))
+    return b_neg, b_pos, b_lock
 
 list_buttons = []
 for idx_feature in range(num_feature):
     list_buttons.append(create_button(idx_feature))
+
+plt.show()
+
+
+
 
 ##
 sess.close()
