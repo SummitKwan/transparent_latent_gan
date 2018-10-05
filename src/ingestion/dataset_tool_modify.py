@@ -21,7 +21,7 @@ import numpy as np
 import tensorflow as tf
 import PIL.Image
 
-path_pg_gan_code = './src/model/pggan_rename'
+path_pg_gan_code = './src/model/pggan'
 sys.path.append(path_pg_gan_code)
 import tfutil
 import dataset
