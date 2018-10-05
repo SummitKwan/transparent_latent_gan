@@ -26,7 +26,7 @@ feature_name = feature_direction_name['name']
 """ test_discovered features """
 
 # path to model code and weight
-path_pg_gan_code = './src/model/pggan'
+path_pg_gan_code = './src/model/pggan_rename'
 path_model = './asset_model/karras2018iclr-celebahq-1024x1024.pkl'
 sys.path.append(path_pg_gan_code)
 

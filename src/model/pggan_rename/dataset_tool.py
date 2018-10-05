@@ -1,8 +1,3 @@
-"""
-tool functions from Nvidia, with modification only in file path,
-from: https://github.com/tkarras/progressive_growing_of_gans/blob/master/dataset_tool.py
-"""
-
 # Copyright (c) 2018, NVIDIA CORPORATION. All rights reserved.
 #
 # This work is licensed under the Creative Commons Attribution-NonCommercial
@@ -21,8 +16,6 @@ import numpy as np
 import tensorflow as tf
 import PIL.Image
 
-path_pg_gan_code = './src/model/pggan_rename'
-sys.path.append(path_pg_gan_code)
 import tfutil
 import dataset
 
@@ -441,10 +434,9 @@ def create_lsun(tfrecord_dir, lmdb_dir, resolution=256, max_images=None):
 
 def create_celeba(tfrecord_dir, celeba_dir, cx=89, cy=121):
     print('Loading CelebA from "%s"' % celeba_dir)
-    glob_pattern = os.path.join(celeba_dir, '*.jpg')
+    glob_pattern = os.path.join(celeba_dir, 'img_align_celeba_png', '*.png')
     image_filenames = sorted(glob.glob(glob_pattern))
     expected_images = 202599
-    print(len(image_filenames))
     if len(image_filenames) != expected_images:
         error('Expected to find %d images' % expected_images)
     
