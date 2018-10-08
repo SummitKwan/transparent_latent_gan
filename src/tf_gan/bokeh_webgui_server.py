@@ -1,4 +1,4 @@
-""" web gui using bokeh """
+""" web gui using bokeh, not fulling functional yet """
 
 
 import os
