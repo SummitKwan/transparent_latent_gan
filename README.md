@@ -1,5 +1,6 @@
-# Insight_Project_Framework
-Framework for machine learning projects at Insight Data Science. 
+# TL-GAN: transparent latent-space GAN
+
+
 
 ## Motivation for this project format:
 - **src** : Put all source code for production within structured directory

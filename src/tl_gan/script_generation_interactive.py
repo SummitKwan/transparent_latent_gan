@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import matplotlib.widgets as widgets
 plt.ion()
 
-import src.tf_gan.feature_axis as feature_axis
+import src.tl_gan.feature_axis as feature_axis
 
 def gen_time_str():
     """ tool function """
@@ -90,7 +90,7 @@ img_cur = gen_image(latents)
 
 
 ##
-""" plot figure """
+""" plot figure with GUI """
 h_fig = plt.figure(figsize=[12, 6])
 h_ax = plt.axes([0.0, 0.0, 0.5, 1.0])
 h_ax.axis('off')
@@ -179,5 +179,5 @@ plt.show()
 
 
 ##
-sess.close()
+#sess.close()
 

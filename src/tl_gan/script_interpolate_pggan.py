@@ -1,5 +1,5 @@
 """
-try face tf_gan using pg-gan model, modified from
+try face tl_gan using pg-gan model, modified from
 https://drive.google.com/drive/folders/1A79qKDTFp6pExe4gTSgBsEOkxwa2oes_
 """
 

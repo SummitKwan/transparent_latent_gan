@@ -17,7 +17,7 @@ from bokeh.palettes import RdYlBu3
 from bokeh.plotting import figure, curdoc
 
 sys.path.append('.')
-import src.tf_gan.feature_axis as feature_axis
+import src.tl_gan.feature_axis as feature_axis
 
 """ load feature directions """
 path_feature_direction = './asset_results/pg_gan_celeba_feature_direction_40'
