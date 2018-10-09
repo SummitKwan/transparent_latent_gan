@@ -1,13 +1,19 @@
 # TL-GAN: transparent latent-space GAN
 
+This is the repository of my three-week project "**Describe as you can tell**: controlled image synthesis and edit using TL-GAN"
 
+This project provides a novel method to ...
+
+- Slides explaining the core ideas of this project are available at 
+[this Google Drive link](https://docs.google.com/presentation/d/1OpcYLBVpUF1L-wwPHu_CyKjXqXD0oRwBoGP2peSCrSA/edit#slide=id.p1)
+- Video showing the interactive demo will be available soon
+- An interactive demo can be found in this Kaggle notebook: [https://www.kaggle.com/summitkwan/tl-gan-demo](https://www.kaggle.com/summitkwan/tl-gan-demo)
 
 ## Motivation for this project format:
 - **src** : Put all source code for production within structured directory
 - **tests** : Put all source code for testing in an easy to find location
 - **configs** : Enable modification of all preset variables within single directory (consisting of one or many config files for separate tasks)
-- **data** : Include example a small amount of data in the Github repository so tests can be run to validate installation
-- **build** : Include scripts that automate building of a standalone environment
+- **data** : Include example a small amount of data in the Github repository so tests can be run to validate installatio
 - **static** : Any images or content to include in the README or web framework if part of the pipeline
 
 ## Setup
