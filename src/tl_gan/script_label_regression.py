@@ -9,7 +9,7 @@ import pandas as pd
 
 
 import src.misc as misc
-import src.tf_gan.feature_axis as feature_axis
+import src.tl_gan.feature_axis as feature_axis
 
 ##
 """ get y and z from pre-generated files """

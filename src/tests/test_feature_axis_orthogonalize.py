@@ -2,7 +2,7 @@
 
 import importlib
 import numpy as np
-import src.tf_gan.feature_axis as feature_axis
+import src.tl_gan.feature_axis as feature_axis
 
 importlib.reload(feature_axis)
 

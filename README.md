@@ -1,137 +1,88 @@
-# Insight_Project_Framework
-Framework for machine learning projects at Insight Data Science. 
+# TL-GAN: transparent latent-space GAN
 
-## Motivation for this project format:
+This is the repository of my three-week project: "**Describe as you can tell: controlled image synthesis and edit using TL-GAN**"
+
+## Core ideas
+
+- This project provides a novel method to control the generation process of a unsupervisedly-trained generative model like GAN (generative adversarial network).  
+- GANs can generate random photo-realistic images from random noise vectors in the latent space (see stunning examples of the Nvidia's [PG-GAN](https://github.com/tkarras/progressive_growing_of_gans)), but we can no control over the features of the generated images.
+- Knowing that the images are determined by the noise vector in the latent space, if we can understand the latent space, we can control our generation process.
+- For a already well-trained GAN generator, I made its latent space *transparent* by discovering feature axes in it.  When a vector moves along a feature axis in the latent space, the corresponding image morphs along that feature, which enables controlled synthesis and edit.
+- This is achieved by leveraging a coupled feature extractor network (a CNN here in this demo, but can be any other CV techniques), which enables us to find correlation between noise vectors and image features.
+- Advantages of this method over conditional GAN and AC-GAN:
+    - Efficiency: To add a new controller of the generator, you do not have to re-train the GAN model, thus it only takes  <1h to add 40 knobs with out methods.
+    - Flexibility: You could use different feature extractors trained on different dataset and add knobs to the well-trained GAN
+
+## Resource lists:
+
+- Slides explaining the core ideas of this project are available at [this Google Drive link](https://docs.google.com/presentation/d/1OpcYLBVpUF1L-wwPHu_CyKjXqXD0oRwBoGP2peSCrSA/edit#slide=id.p1)
+- A video presentation of this project will be available soon on YouTube
+- An interactive demo can be found in this Kaggle notebook: [https://www.kaggle.com/summitkwan/tl-gan-demo](https://www.kaggle.com/summitkwan/tl-gan-demo), have fun playing with this model!
+
+
+
+## 1. Instructions on the online demo
+
+#### 1.1 Why hosting the model on Kaggle
+
+I host the demo as a Kaggle notebook instead of a more convenient web app due to cost considerations.
+
+Kaggle generously provides kernels with GPUs for Free! Alternatively, a web app with a backend running on an AWS GPU instance costs ~$600 per month.  Thanks to Kaggle that makes it possible for everyone to play with the model without downloading code/data to your local machine!
+
+#### 1.2 To use the demo
+
+Open this link from your web browser: https://www.kaggle.com/summitkwan/tl-gan-demo
+
+1. Make sure you have a Kaggle account. If not, please register one (this can be done in seconds by linking to your Google or Facebook account). To have a Kaggle account is actually very rewarding, since allows you to participate numerous  data science challenges and join the knowledgeable and friendly community.
+2. Fork the current notebook
+3. run the notebook by pressing the double right arrow button at the bottom left of the web page. If something does not work right, try to restart the kernel by pressing the circular-arrow button on the bottom right and rerun the notebook
+4. Go to the bottom of the notebook and play with the image interactively
+5. You are all set, play with the model:
+    - Press the “-/+“ to control every feature
+    - Toggle the name of feature to lock one particular feature. e.g. lock “Male” when playing with “Beard"
+
+## 2. Instructions on running the code on your machine
+
+Tested on Nvidia K80 GPU with CUDA 9.0, with Anaconda Python 3.6 
+
+### 2.1 Set up the code and environment
+
+1. Clone this repository
+2. `cd` to the root directory of the project (the folder containing the `README.md`)
+3. Install dependencies by running `pip install -r requirements.txt` in terminal.  You can use virtual environment in order not to modify your current python environment.
+
+### 2.2 Use the trained model on your machine
+
+1. Manually download the pre-trained pg-GAN model (provided by Nvidia), the trained feature extractor network, and the discovered feature axis from [my personal dropbox link](https://www.dropbox.com/sh/y1ryg8iq1erfcsr/AAB--PO5qAapwp8ILcgxE2I6a?dl=0)
+2. Decompress the downloaded files and put it in project directory as the following format
+
+    ```text
+    root(d):
+      asset_model(d):
+        karras2018iclr-celebahq-1024x1024.pkl   # pretrained GAN from Nvidia
+        cnn_face_attr_celeba(d):
+          model_20180927_032934.h5              # trained feature extractor network
+      asset_results(d):
+        pg_gan_celeba_feature_direction_40(d):
+          feature_direction_20181002_044444.pkl # feature axes
+    ```
+
+3. Run the interactive demo by first enter interactive python shell from terminal (make sure you are at the project root directory), and then run the commands in python
+    ```python
+    exec(open('./src/tl_gan/script_generation_interactive.py').read())
+    ```
+4. A interactive GUI interface will pop up and play with the model
+
+### 2.3 Instructions on training the model on your own
+
+1. Download celebA dataset `python ./src/ingestion/process_celeba.py celebA`
+2. to be continued...
+
+## 3. Project structure
+
 - **src** : Put all source code for production within structured directory
-- **tests** : Put all source code for testing in an easy to find location
-- **configs** : Enable modification of all preset variables within single directory (consisting of one or many config files for separate tasks)
-- **data** : Include example a small amount of data in the Github repository so tests can be run to validate installation
-- **build** : Include scripts that automate building of a standalone environment
+- **data** : Include example a small amount of data in the Github repository so tests can be run to validate installatio
 - **static** : Any images or content to include in the README or web framework if part of the pipeline
-
-## Setup
-Clone repository and update python path
-```
-repo_name=Insight_Project_Framework # URL of your new repository
-username=mrubash1 # Username for your personal github account
-git clone https://github.com/$username/$repo_name
-cd $repo_name
-echo "export $repo_name=${PWD}" >> ~/.bash_profile
-echo "export PYTHONPATH=$repo_name/src:${PYTHONPATH}" >> ~/.bash_profile
-source ~/.bash_profile
-```
-Create new development branch and switch onto it
-```
-branch_name=dev-readme_requisites-20180905 # Name of development branch, of the form 'dev-feature_name-date_of_creation'}}
-git checkout -b $branch_name
-git push origin $branch_name
-```
-
-## Requisites
-- List all packages and software needed to build the environment
-- This could include cloud command line tools (i.e. gsutil), package managers (i.e. conda), etc.
-```
-# Example
-- A
-- B
-- C
-```
-
-## Build Environment
-- Include instructions of how to launch scripts in the build subfolder
-- Build scripts can include shell scripts or python setup.py files
-- The purpose of these scripts is to build a standalone environment, for running the code in this repository
-- The environment can be for local use, or for use in a cloud environment
-- If using for a cloud environment, commands could include CLI tools from a cloud provider (i.e. gsutil from Google Cloud Platform)
-```
-# Example
-
-# Step 1
-# Step 2
-```
-
-## Configs
-- We recommond using either .yaml or .txt for your config files, not .json
-- **DO NOT STORE CREDENTIALS IN THE CONFIG DIRECTORY!!**
-- If credentials are needed, use environment variables or HashiCorp's [Vault](https://www.vaultproject.io/)
+- to be continueed
 
 
-## Get Data
-
-### Get IAM handwritting top50 dataset
-
-The dataset used here is the selected subset of the IAM handwritting dataset
-that can be downloaded from Kaggle throught the link
-
-https://www.kaggle.com/tejasreddy/iam-handwriting-top50
-
-Note that you have to log in your Kaggle account and download the zip file
- manually and put it under the project folder 
-`/data/raw/`
-
-and run `python ./scr/ingestion/process_IAM_top50.py` to extract data
-
-### Get the Transient attribute scenes dataset:
-
-The dataset is described in  
-http://transattr.cs.brown.edu
-
-in terminal run `python ./src/ingestion/process_transient_attribute_scenes.py` to download and extract
-
-### Get CelebA, cifar or minist
-
-in terminal run `python ./src/ingestion/process_celeba.py celebA` to download and extract celebA
-
-in terminal run `python ./src/ingestion/process_celeba.py cifar` to download and extract cifar
-
-in terminal run `python ./src/ingestion/process_celeba.py mnist` to download and extract mnist
-
-
-## Test
-- Include instructions for how to run all tests after the software is installed
-```
-# Example
-
-# Step 1
-# Step 2
-```
-
-## Run Inference
-- Include instructions on how to run inference
-- i.e. image classification on a single image for a CNN deep learning project
-```
-# Example
-
-# Step 1
-# Step 2
-```
-
-## Build Model
-- Include instructions of how to build the model
-- This can be done either locally or on the cloud
-```
-# Example
-
-# Step 1
-# Step 2
-```
-
-## Serve Model
-- Include instructions of how to set up a REST or RPC endpoint 
-- This is for running remote inference via a custom model
-```
-# Example
-
-# Step 1
-# Step 2
-```
-
-## Analysis
-- Include some form of EDA (exploratory data analysis)
-- And/or include benchmarking of the model and results
-```
-# Example
-
-# Step 1
-# Step 2
-```
