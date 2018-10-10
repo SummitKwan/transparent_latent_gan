@@ -2,6 +2,17 @@
 
 This is the repository of my three-week project: "**Describe as you can tell: controlled image synthesis and edit using TL-GAN**"
 
+## Resource lists:
+
+- **Slides presentation** explaining the core ideas of this project are available at [this Google Drive link](https://docs.google.com/presentation/d/1OpcYLBVpUF1L-wwPHu_CyKjXqXD0oRwBoGP2peSCrSA/edit#slide=id.p1)
+- A video presentation of this project will be available soon on YouTube
+- An **interactive demo** can be found in this Kaggle notebook: [https://www.kaggle.com/summitkwan/tl-gan-demo](https://www.kaggle.com/summitkwan/tl-gan-demo), have fun playing with this model!
+
+![Alt text](./static/online_demo_run_fast_01.gif?raw=true "Title")
+
+[A high quaility video of the above GIF on YouTube](https://www.youtube.com/watch?v=O1by05eX424)
+
+
 ## Core ideas
 
 - This project provides a novel method to control the generation process of a unsupervisedly-trained generative model like GAN (generative adversarial network).  
@@ -12,13 +23,6 @@ This is the repository of my three-week project: "**Describe as you can tell: co
 - Advantages of this method over conditional GAN and AC-GAN:
     - Efficiency: To add a new controller of the generator, you do not have to re-train the GAN model, thus it only takes  <1h to add 40 knobs with out methods.
     - Flexibility: You could use different feature extractors trained on different dataset and add knobs to the well-trained GAN
-
-## Resource lists:
-
-- Slides explaining the core ideas of this project are available at [this Google Drive link](https://docs.google.com/presentation/d/1OpcYLBVpUF1L-wwPHu_CyKjXqXD0oRwBoGP2peSCrSA/edit#slide=id.p1)
-- A video presentation of this project will be available soon on YouTube
-- An interactive demo can be found in this Kaggle notebook: [https://www.kaggle.com/summitkwan/tl-gan-demo](https://www.kaggle.com/summitkwan/tl-gan-demo), have fun playing with this model!
-
 
 
 ## 1. Instructions on the online demo
@@ -43,7 +47,7 @@ Open this link from your web browser: https://www.kaggle.com/summitkwan/tl-gan-d
 
 ## 2. Instructions on running the code on your machine
 
-Tested on Nvidia K80 GPU with CUDA 9.0, with Anaconda Python 3.6 
+Tested on Nvidia K80 GPU with CUDA 9.0, with Anaconda Python 3.6
 
 ### 2.1 Set up the code and environment
 
@@ -84,5 +88,3 @@ Tested on Nvidia K80 GPU with CUDA 9.0, with Anaconda Python 3.6
 - **data** : Include example a small amount of data in the Github repository so tests can be run to validate installatio
 - **static** : Any images or content to include in the README or web framework if part of the pipeline
 - to be continueed
-
-
