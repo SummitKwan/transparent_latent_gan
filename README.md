@@ -2,15 +2,15 @@
 
 This is the repository of my three-week project: "**Describe as you can tell: controlled image synthesis and edit using TL-GAN**"
 
-![Alt text](./static/online_demo_run_fast_01.gif?raw=true "Title")
-
-[High quaility video on YouTube](https://www.youtube.com/watch?v=O1by05eX424)
-
 ## Resource lists:
 
-- Slides explaining the core ideas of this project are available at [this Google Drive link](https://docs.google.com/presentation/d/1OpcYLBVpUF1L-wwPHu_CyKjXqXD0oRwBoGP2peSCrSA/edit#slide=id.p1)
+- **Slides presentation** explaining the core ideas of this project are available at [this Google Drive link](https://docs.google.com/presentation/d/1OpcYLBVpUF1L-wwPHu_CyKjXqXD0oRwBoGP2peSCrSA/edit#slide=id.p1)
 - A video presentation of this project will be available soon on YouTube
-- An interactive demo can be found in this Kaggle notebook: [https://www.kaggle.com/summitkwan/tl-gan-demo](https://www.kaggle.com/summitkwan/tl-gan-demo), have fun playing with this model!
+- An **interactive demo** can be found in this Kaggle notebook: [https://www.kaggle.com/summitkwan/tl-gan-demo](https://www.kaggle.com/summitkwan/tl-gan-demo), have fun playing with this model!
+
+![Alt text](./static/online_demo_run_fast_01.gif?raw=true "Title")
+
+[A high quaility video of the above GIF on YouTube](https://www.youtube.com/watch?v=O1by05eX424)
 
 
 ## Core ideas
