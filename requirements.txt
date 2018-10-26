@@ -12,4 +12,3 @@ moviepy>=0.2.3.5
 scikit_learn>=0.20.0
 tensorflow-gpu>=1.10.0
 opencv-python>=3.4.0.12
-keras>=2.2.2
