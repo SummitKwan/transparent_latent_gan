@@ -1,9 +1,10 @@
 # TL-GAN: transparent latent-space GAN
 
-This is the repository of my three-week project: "**Describe as you can tell: controlled image synthesis and edit using TL-GAN**"
+This is the repository of my three-week project: "**Draw as you can tell: controlled image synthesis and edit using TL-GAN**"
 
 ## Resource lists:
 
+- **Blog post** expaining the motivation, architecture and results is posted on [this Medium link](https://medium.com/p/d170b1b59255)
 - **Slides presentation** explaining the core ideas of this project are available at [this Google Drive link](https://docs.google.com/presentation/d/1OpcYLBVpUF1L-wwPHu_CyKjXqXD0oRwBoGP2peSCrSA/edit#slide=id.p1)
 - A video presentation of this project will be available soon on YouTube
 - An **interactive demo** can be found in this Kaggle notebook: [https://www.kaggle.com/summitkwan/tl-gan-demo](https://www.kaggle.com/summitkwan/tl-gan-demo), have fun playing with this model!
@@ -75,6 +76,10 @@ Tested on Nvidia K80 GPU with CUDA 9.0, with Anaconda Python 3.6
     ```python
     exec(open('./src/tl_gan/script_generation_interactive.py').read())
     ```
+    
+    Alternatively, you can run the interactive demo from the Jupyter Notebook at `./src/notebooks/tl_gan_ipywidgets_gui.ipynb`
+    
+    
 4. A interactive GUI interface will pop up and play with the model
 
 ### 2.3 Instructions on training the model on your own
