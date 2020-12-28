@@ -29,7 +29,7 @@ distribution given by summary statistics (in pickle format).
 
 The FID is calculated by assuming that X_1 and X_2 are the activations of
 the pool_3 layer of the inception net for generated samples and real world
-samples respectivly.
+samples respectively.
 
 See --help to see further details.
 '''
